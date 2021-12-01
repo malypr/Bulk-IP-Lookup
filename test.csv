@@ -1,0 +1,4 @@
+ip,hostname,anycast,city,region,country,org,postal
+8.8.8.8,dns.google,True,Mountain View,California,US,AS15169 Google LLC,94043
+1.1.1.1,one.one.one.one,True,Miami,Florida,US,"AS13335 Cloudflare, Inc.",33132
+1.0.0.1,one.one.one.one,True,Brisbane,Queensland,AU,"AS13335 Cloudflare, Inc.",4101
