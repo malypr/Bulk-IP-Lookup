@@ -5,6 +5,8 @@ Super quick and simple Python 3 script to get geolocations of IP addresses via I
 * requests
 * csv
 
+`pip install requests csv`
+
 ### Usage:
 Example: `python lookup.py -f ip_list.txt --csv test_out.csv --ipinfo`
 
