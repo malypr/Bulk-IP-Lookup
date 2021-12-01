@@ -30,4 +30,4 @@ if __name__=="__main__":
                     w.writerow(b)
         else:
             for i in o:
-                print(o[i])
+                print(i)
