@@ -1,5 +1,5 @@
-# Bulk-IP-Lookup
-Super quick and simple Python 3 script to get geolocations of IP addresses via IPInfo.
+# Bulk IP Geolocation Lookup
+Intentionally simple Python script to lookup the geolocation of IP addresses via IPInfo.
 
 ### Requirements:
 * requests
@@ -8,12 +8,18 @@ Super quick and simple Python 3 script to get geolocations of IP addresses via I
 `pip install requests csv`
 
 ### Usage:
-Example: `python lookup.py -f ip_list.txt --csv test_out.csv --ipinfo`
+Lookup IP Addresses from a file names "ip_list.txt and output the geolocation information to a CSV file names "out.csv"
 
-`-f ip_list.txt | Input file containing a \n separated list of IP addresses`
+```python lookup.py -f ip_list.txt --csv out.csv```
 
-`--ipinfo |  Lookup IPs on IPInfo`
+Usage:
 
-`--csv file.csv | Output to CSV`
+```python phecon.py -h
+usage: phecon.py [-h] -f ipList.txt [--csv out.csv]
 
-You can input an API key for IPInfo in the `conf.py`
+Bulk IP Lookup
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -f ipList.txt  File containing list of IP addresses
+  --csv out.csv  Output to CSV```
