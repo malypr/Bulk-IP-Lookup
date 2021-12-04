@@ -10,7 +10,9 @@ Intentionally simple Python script to lookup the geolocation of IP addresses via
 ### Usage:
 Lookup IP Addresses from a file names "ip_list.txt and output the geolocation information to a CSV file names "out.csv"
 
-```python lookup.py -f ip_list.txt --csv out.csv```
+```
+python lookup.py -f ip_list.txt --csv out.csv
+```
 
 Usage:
 
