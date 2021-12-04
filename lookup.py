@@ -1,33 +1,28 @@
-import requests,conf,argparse,json,csv
-
-def L_IPInfo(ip):
-    a=""
-    if conf.CONF['ipinfo']['api_key']!="":
-        a="?token="+conf.CONF['ipinfo']['api_key']
-    r=json.loads(requests.get(conf.CONF['ipinfo']['endpoint']+ip+"/json"+a).text)
-    return r
+import requests,argparse,json,csv
+def IPInfo(ip,fields,token=None):
+    if token!=None:
+        append="?token="+token
+    else:
+        append=''
+    r=json.loads(requests.get("https://ipinfo.io/"+ip+"/json"+append).text)
+    o={}
+    for field in fields:
+        if field in r:
+            o[field]=r[field]
+    return o
 if __name__=="__main__":
-    a=argparse.ArgumentParser(description="Bulk IP Lookup")
-    a.add_argument("-f",required=True,metavar="ip_list.txt",help="List of IPs")
-    a.add_argument("--csv",metavar="output.csv",help="Output to CSV File")
-    a.add_argument("--ipinfo",action="store_true",help="Lookup in IPInfo")
-    a=a.parse_args()
-    with open(a.f) as f:
-        o=[]
-        for l in f:
-            if a.ipinfo==True:
-                o.append(L_IPInfo(l.split("\n")[0]))
-        if a.csv!=None:
-            with open(a.csv,'w', newline='\n') as x:
-                v=["ip","hostname","anycast","city","region","country","org","postal"]
-                w=csv.DictWriter(x,fieldnames=v)
+    prs=argparse.ArgumentParser(description="Bulk IP Lookup")
+    prs.add_argument("-f",required=True,metavar="ipList.txt",help="File containing list of IP addresses")
+    prs.add_argument("--csv",required=False,metavar="out.csv",help="Output to CSV")
+    arg=prs.parse_args()
+    fields=['ip','org','hostname','city','region','country','org','postal']
+    with open(arg.f) as f:
+        if arg.csv != None:
+            with open(arg.csv,'w') as x:
+                w=csv.DictWriter(x,fieldnames=fields)
                 w.writeheader()
-                for i in o:
-                    b={}
-                    for y in v:
-                        if y in i:
-                            b[y]=i[y]
-                    w.writerow(b)
+                for i in f:
+                    w.writerow(IPInfo(i.split("\n")[0],fields))
         else:
-            for i in o:
-                print(i)
+            for i in f:
+                print(IPInfo(i.split("\n")[0],fields))
