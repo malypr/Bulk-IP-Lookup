@@ -15,7 +15,7 @@ Lookup IP Addresses from a file names "ip_list.txt and output the geolocation in
 Usage:
 
 ```python phecon.py -h
-usage: phecon.py [-h] -f ipList.txt [--csv out.csv]
+usage: lookup.py [-h] -f ipList.txt [--csv out.csv]
 
 Bulk IP Lookup
 
